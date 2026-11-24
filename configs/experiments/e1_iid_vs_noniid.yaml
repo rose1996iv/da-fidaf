@@ -1,0 +1,21 @@
+experiment_id: E1
+name: IID vs Non-IID Heterogeneous Federated Learning
+status: CONDITIONAL
+seed: 42
+seeds_multi_run: [42, 101, 202]
+datasets:
+  primary: ToN-IoT (train_test_network.csv)
+  supporting: [CICIoT2023 (MERGED_CSV), Edge-IIoTset (ML-EdgeIIoT-dataset.csv)]
+federation:
+  n_clients: 10
+  client_type: simulated_logical_gateway
+  rounds: 10
+  local_epochs: 2
+  partition_strategy: label_skew
+  partition_grid: [iid, label_skew, feature_skew, quantity_skew, combined]
+  dirichlet_alphas: [0.5, 0.1]
+  aggregation: fedavg
+preprocessing:
+  fit_scope: train_only
+  imputation: median
+  scaling: robust

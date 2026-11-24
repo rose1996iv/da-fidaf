@@ -1,0 +1,864 @@
+{
+  "schema_version": "1.0.0",
+  "audit_metadata": {
+    "phase": "Phase 1C",
+    "audit_timestamp_utc": "2026-11-24T03:46:12Z",
+    "dataset_family": "ToN-IoT (Processed_Network_dataset + SecurityEvents_Network_datasets)",
+    "elapsed_seconds": 106.55,
+    "seed": 42,
+    "preprocessing_fit_origin": "Period A baseline only (2019-04-02 to 2019-04-04); zero combined-period fitting"
+  },
+  "period_definitions": {
+    "period_a": {
+      "label": "normal_baseline",
+      "utc_start": "2019-04-02T00:00:00Z",
+      "utc_end": "2019-04-04T23:59:59Z",
+      "verified_normal_rows": 200898,
+      "verified_normal_rows_dedup": 27441,
+      "duplicate_rate_pct": 86.34
+    },
+    "capture_gap": {
+      "utc_start": "2019-04-05T00:00:00Z",
+      "utc_end": "2019-04-22T23:59:59Z",
+      "records": 0
+    },
+    "period_b": {
+      "label": "normal_during_attack_campaign",
+      "utc_start": "2019-04-23T00:00:00Z",
+      "utc_end": "2019-04-29T23:59:59Z",
+      "verified_normal_rows": 595482,
+      "verified_normal_rows_dedup": 272165,
+      "duplicate_rate_pct": 54.3
+    },
+    "attack_rows_excluded": 21542641,
+    "label_type_mismatches": 0
+  },
+  "feature_decisions": {
+    "included_numeric_features": [
+      "duration",
+      "src_bytes",
+      "dst_bytes",
+      "missed_bytes",
+      "src_pkts",
+      "src_ip_bytes",
+      "dst_pkts",
+      "dst_ip_bytes",
+      "http_request_body_len",
+      "http_response_body_len"
+    ],
+    "categorical_confounders_audited_separately": [
+      "proto",
+      "service",
+      "conn_state"
+    ],
+    "excluded_features": {
+      "src_ip, dst_ip": "Host/network identifiers (severe IP memorization & confounding risk)",
+      "src_port, dst_port": "Ephemeral/session port identifiers",
+      "ts": "Raw capture timestamp (temporal leakage if used as model input)",
+      "label, type": "Target labels",
+      "dns_*, ssl_*, http_uri, http_user_agent, weird_*": "Sparse high-cardinality protocol strings / post-event metadata excluded from numeric shift baseline"
+    }
+  },
+  "statistical_metrics": {
+    "feature_level": {
+      "duration": {
+        "period_a_summary": {
+          "n": 200898,
+          "mean": 12.663987,
+          "std": 410.757464,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.034369,
+          "p99": 88.395489,
+          "max": 85274.3546,
+          "zero_pct": 71.248
+        },
+        "period_b_summary": {
+          "n": 595482,
+          "mean": 2.301961,
+          "std": 159.740806,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.000541,
+          "p90": 0.325408,
+          "p99": 22.499554,
+          "max": 78300.41523,
+          "zero_pct": 45.417
+        },
+        "missing_a": 0,
+        "missing_b": 0,
+        "psi_retained": 0.50253,
+        "jsd_bits_retained": 0.087805,
+        "wasserstein_1d_retained": 11.549287,
+        "wasserstein_1d_std_a": 0.028117,
+        "smd_period_a_scaled_retained": -0.025227,
+        "time_block_bootstrap": {
+          "n_blocks_a": 47,
+          "n_blocks_b": 98,
+          "n_boot": 200,
+          "smd_ci95": [
+            -0.033222,
+            -0.017131
+          ],
+          "jsd_ci95": [
+            0.019805,
+            0.256162
+          ],
+          "p_value_smd_two_sided": 0.0
+        },
+        "dedup_sensitivity": {
+          "psi_dedup": 0.470032,
+          "jsd_bits_dedup": 0.077894,
+          "smd_dedup": -0.078888,
+          "period_a_n_dedup": 27441,
+          "period_b_n_dedup": 272165
+        },
+        "holm_bonferroni_p_value": 0.0
+      },
+      "src_bytes": {
+        "period_a_summary": {
+          "n": 200723,
+          "mean": 6385.538015,
+          "std": 602890.001615,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 130.0,
+          "p99": 774.0,
+          "max": 133750885.0,
+          "zero_pct": 81.553
+        },
+        "period_b_summary": {
+          "n": 594788,
+          "mean": 4385.344763,
+          "std": 2188234.490846,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 226.0,
+          "p99": 3481.0,
+          "max": 1675903638.0,
+          "zero_pct": 63.14
+        },
+        "missing_a": 175,
+        "missing_b": 694,
+        "psi_retained": 0.009501,
+        "jsd_bits_retained": 0.00171,
+        "wasserstein_1d_retained": 7480.42155,
+        "wasserstein_1d_std_a": 0.012408,
+        "smd_period_a_scaled_retained": -0.003318,
+        "time_block_bootstrap": {
+          "n_blocks_a": 47,
+          "n_blocks_b": 98,
+          "n_boot": 200,
+          "smd_ci95": [
+            -0.012137,
+            0.008701
+          ],
+          "jsd_ci95": [
+            4e-06,
+            0.020854
+          ],
+          "p_value_smd_two_sided": 0.42
+        },
+        "dedup_sensitivity": {
+          "psi_dedup": 0.132342,
+          "jsd_bits_dedup": 0.02347,
+          "smd_dedup": -0.022748,
+          "period_a_n_dedup": 27423,
+          "period_b_n_dedup": 272138
+        },
+        "holm_bonferroni_p_value": 0.88
+      },
+      "dst_bytes": {
+        "period_a_summary": {
+          "n": 200898,
+          "mean": 3549.843448,
+          "std": 306181.655868,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 132.0,
+          "p99": 1170.0,
+          "max": 67001923.0,
+          "zero_pct": 86.449
+        },
+        "period_b_summary": {
+          "n": 595482,
+          "mean": 71117.990954,
+          "std": 15333006.158963,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 1168.0,
+          "p99": 22043.0,
+          "max": 6172672507.0,
+          "zero_pct": 67.21
+        },
+        "missing_a": 0,
+        "missing_b": 0,
+        "psi_retained": 0.187428,
+        "jsd_bits_retained": 0.032759,
+        "wasserstein_1d_retained": 95012.2646,
+        "wasserstein_1d_std_a": 0.310313,
+        "smd_period_a_scaled_retained": 0.22068,
+        "time_block_bootstrap": {
+          "n_blocks_a": 47,
+          "n_blocks_b": 98,
+          "n_boot": 200,
+          "smd_ci95": [
+            -0.004016,
+            0.76582
+          ],
+          "jsd_ci95": [
+            0.009435,
+            0.090167
+          ],
+          "p_value_smd_two_sided": 0.13
+        },
+        "dedup_sensitivity": {
+          "psi_dedup": 0.199036,
+          "jsd_bits_dedup": 0.035239,
+          "smd_dedup": 0.117292,
+          "period_a_n_dedup": 27441,
+          "period_b_n_dedup": 272165
+        },
+        "holm_bonferroni_p_value": 0.65
+      },
+      "missed_bytes": {
+        "period_a_summary": {
+          "n": 200898,
+          "mean": 2443.521777,
+          "std": 261190.515732,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p99": 0.0,
+          "max": 61450872.0,
+          "zero_pct": 99.539
+        },
+        "period_b_summary": {
+          "n": 595482,
+          "mean": 11019.991063,
+          "std": 4068698.822304,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p99": 0.0,
+          "max": 1848787389.0,
+          "zero_pct": 99.751
+        },
+        "missing_a": 0,
+        "missing_b": 0,
+        "psi_retained": 0.0,
+        "jsd_bits_retained": 0.0,
+        "wasserstein_1d_retained": 773.36175,
+        "wasserstein_1d_std_a": 0.002961,
+        "smd_period_a_scaled_retained": 0.032836,
+        "time_block_bootstrap": {
+          "n_blocks_a": 47,
+          "n_blocks_b": 98,
+          "n_boot": 200,
+          "smd_ci95": [
+            -0.016585,
+            0.135534
+          ],
+          "jsd_ci95": [
+            0.0,
+            0.0
+          ],
+          "p_value_smd_two_sided": 0.6
+        },
+        "dedup_sensitivity": {
+          "psi_dedup": 0.0,
+          "jsd_bits_dedup": 0.0,
+          "smd_dedup": 0.001855,
+          "period_a_n_dedup": 27441,
+          "period_b_n_dedup": 272165
+        },
+        "holm_bonferroni_p_value": 0.88
+      },
+      "src_pkts": {
+        "period_a_summary": {
+          "n": 200898,
+          "mean": 9.393797,
+          "std": 747.129044,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 2.0,
+          "p99": 12.0,
+          "max": 252181.0,
+          "zero_pct": 66.861
+        },
+        "period_b_summary": {
+          "n": 595482,
+          "mean": 42.108482,
+          "std": 5158.95812,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 1.0,
+          "p90": 120.0,
+          "p99": 120.0,
+          "max": 2570179.0,
+          "zero_pct": 11.308
+        },
+        "missing_a": 0,
+        "missing_b": 0,
+        "psi_retained": 1.567022,
+        "jsd_bits_retained": 0.257339,
+        "wasserstein_1d_retained": 27.4336,
+        "wasserstein_1d_std_a": 0.036719,
+        "smd_period_a_scaled_retained": 0.043787,
+        "time_block_bootstrap": {
+          "n_blocks_a": 47,
+          "n_blocks_b": 98,
+          "n_boot": 200,
+          "smd_ci95": [
+            0.007746,
+            0.110868
+          ],
+          "jsd_ci95": [
+            0.168301,
+            0.374249
+          ],
+          "p_value_smd_two_sided": 0.0
+        },
+        "dedup_sensitivity": {
+          "psi_dedup": 1.61664,
+          "jsd_bits_dedup": 0.259337,
+          "smd_dedup": 0.007581,
+          "period_a_n_dedup": 27441,
+          "period_b_n_dedup": 272165
+        },
+        "holm_bonferroni_p_value": 0.0
+      },
+      "src_ip_bytes": {
+        "period_a_summary": {
+          "n": 200898,
+          "mean": 2343.404797,
+          "std": 197303.824414,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 186.0,
+          "p99": 1512.0,
+          "max": 31896999.0,
+          "zero_pct": 66.861
+        },
+        "period_b_summary": {
+          "n": 595482,
+          "mean": 5063.292351,
+          "std": 1419294.888845,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 82.0,
+          "p90": 4800.0,
+          "p99": 5564.0,
+          "max": 1053479123.0,
+          "zero_pct": 11.308
+        },
+        "missing_a": 0,
+        "missing_b": 0,
+        "psi_retained": 0.690724,
+        "jsd_bits_retained": 0.120254,
+        "wasserstein_1d_retained": 2619.41205,
+        "wasserstein_1d_std_a": 0.013276,
+        "smd_period_a_scaled_retained": 0.013785,
+        "time_block_bootstrap": {
+          "n_blocks_a": 47,
+          "n_blocks_b": 98,
+          "n_boot": 200,
+          "smd_ci95": [
+            -0.005324,
+            0.038634
+          ],
+          "jsd_ci95": [
+            0.076256,
+            0.226615
+          ],
+          "p_value_smd_two_sided": 0.22
+        },
+        "dedup_sensitivity": {
+          "psi_dedup": 0.968246,
+          "jsd_bits_dedup": 0.164975,
+          "smd_dedup": -0.012204,
+          "period_a_n_dedup": 27441,
+          "period_b_n_dedup": 272165
+        },
+        "holm_bonferroni_p_value": 0.88
+      },
+      "dst_pkts": {
+        "period_a_summary": {
+          "n": 200898,
+          "mean": 13.512753,
+          "std": 1163.945877,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 1.0,
+          "p99": 5.0,
+          "max": 313943.0,
+          "zero_pct": 86.352
+        },
+        "period_b_summary": {
+          "n": 595482,
+          "mean": 31.104881,
+          "std": 5469.963722,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 5.0,
+          "p99": 25.0,
+          "max": 3238855.0,
+          "zero_pct": 56.911
+        },
+        "missing_a": 0,
+        "missing_b": 0,
+        "psi_retained": 0.461226,
+        "jsd_bits_retained": 0.079863,
+        "wasserstein_1d_retained": 13.07055,
+        "wasserstein_1d_std_a": 0.01123,
+        "smd_period_a_scaled_retained": 0.015114,
+        "time_block_bootstrap": {
+          "n_blocks_a": 47,
+          "n_blocks_b": 98,
+          "n_boot": 200,
+          "smd_ci95": [
+            -0.008429,
+            0.0517
+          ],
+          "jsd_ci95": [
+            0.021418,
+            0.168101
+          ],
+          "p_value_smd_two_sided": 0.27
+        },
+        "dedup_sensitivity": {
+          "psi_dedup": 0.181423,
+          "jsd_bits_dedup": 0.032142,
+          "smd_dedup": -0.010788,
+          "period_a_n_dedup": 27441,
+          "period_b_n_dedup": 272165
+        },
+        "holm_bonferroni_p_value": 0.88
+      },
+      "dst_ip_bytes": {
+        "period_a_summary": {
+          "n": 200898,
+          "mean": 1328.071559,
+          "std": 94957.584306,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 170.0,
+          "p99": 1201.0,
+          "max": 18453884.0,
+          "zero_pct": 86.352
+        },
+        "period_b_summary": {
+          "n": 595482,
+          "mean": 6899.149778,
+          "std": 589678.794647,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 1500.0,
+          "p99": 22815.0,
+          "max": 175198694.0,
+          "zero_pct": 56.911
+        },
+        "missing_a": 0,
+        "missing_b": 0,
+        "psi_retained": 0.362727,
+        "jsd_bits_retained": 0.062362,
+        "wasserstein_1d_retained": 10838.50015,
+        "wasserstein_1d_std_a": 0.11414,
+        "smd_period_a_scaled_retained": 0.058669,
+        "time_block_bootstrap": {
+          "n_blocks_a": 47,
+          "n_blocks_b": 98,
+          "n_boot": 200,
+          "smd_ci95": [
+            0.016871,
+            0.113942
+          ],
+          "jsd_ci95": [
+            0.016156,
+            0.125143
+          ],
+          "p_value_smd_two_sided": 0.0
+        },
+        "dedup_sensitivity": {
+          "psi_dedup": 0.162158,
+          "jsd_bits_dedup": 0.028708,
+          "smd_dedup": 0.019629,
+          "period_a_n_dedup": 27441,
+          "period_b_n_dedup": 272165
+        },
+        "holm_bonferroni_p_value": 0.0
+      },
+      "http_request_body_len": {
+        "period_a_summary": {
+          "n": 200898,
+          "mean": 0.068721,
+          "std": 9.473908,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p99": 0.0,
+          "max": 2338.0,
+          "zero_pct": 99.992
+        },
+        "period_b_summary": {
+          "n": 595482,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p99": 0.0,
+          "max": 0.0,
+          "zero_pct": 100.0
+        },
+        "missing_a": 0,
+        "missing_b": 0,
+        "psi_retained": 0.0,
+        "jsd_bits_retained": 0.0,
+        "wasserstein_1d_retained": 0.0,
+        "wasserstein_1d_std_a": 0.0,
+        "smd_period_a_scaled_retained": -0.007254,
+        "time_block_bootstrap": {
+          "n_blocks_a": 47,
+          "n_blocks_b": 98,
+          "n_boot": 200,
+          "smd_ci95": [
+            -0.016274,
+            -0.001281
+          ],
+          "jsd_ci95": [
+            0.0,
+            0.0
+          ],
+          "p_value_smd_two_sided": 0.0
+        },
+        "dedup_sensitivity": {
+          "psi_dedup": 0.0,
+          "jsd_bits_dedup": 0.0,
+          "smd_dedup": -0.01963,
+          "period_a_n_dedup": 27441,
+          "period_b_n_dedup": 272165
+        },
+        "holm_bonferroni_p_value": 0.0
+      },
+      "http_response_body_len": {
+        "period_a_summary": {
+          "n": 200898,
+          "mean": 151.819132,
+          "std": 31232.309682,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p99": 0.0,
+          "max": 13424384.0,
+          "zero_pct": 99.883
+        },
+        "period_b_summary": {
+          "n": 595482,
+          "mean": 0.025863,
+          "std": 19.957889,
+          "min": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p99": 0.0,
+          "max": 15401.0,
+          "zero_pct": 100.0
+        },
+        "missing_a": 0,
+        "missing_b": 0,
+        "psi_retained": 0.0,
+        "jsd_bits_retained": 0.0,
+        "wasserstein_1d_retained": 161.15585,
+        "wasserstein_1d_std_a": 0.00516,
+        "smd_period_a_scaled_retained": -0.00486,
+        "time_block_bootstrap": {
+          "n_blocks_a": 47,
+          "n_blocks_b": 98,
+          "n_boot": 200,
+          "smd_ci95": [
+            -0.01143,
+            -0.000368
+          ],
+          "jsd_ci95": [
+            0.0,
+            0.0
+          ],
+          "p_value_smd_two_sided": 0.0
+        },
+        "dedup_sensitivity": {
+          "psi_dedup": 0.0,
+          "jsd_bits_dedup": 0.0,
+          "smd_dedup": -0.013142,
+          "period_a_n_dedup": 27441,
+          "period_b_n_dedup": 272165
+        },
+        "holm_bonferroni_p_value": 0.0
+      }
+    },
+    "multivariate_mmd": {
+      "n_period_a": 800,
+      "n_period_b": 800,
+      "n_features": 10,
+      "sigma2_median_heuristic": 2.486682,
+      "mmd2_unbiased": 0.18897,
+      "permutation_p_value": 0.009901,
+      "n_permutations": 100,
+      "seed": 42
+    },
+    "multiple_testing_correction": "Holm-Bonferroni across 10 numeric features using two-sided 1-hour time-block bootstrap p-values",
+    "operational_thresholds_note": "No universal PSI/JSD threshold is assumed; shifts are evaluated jointly via effect size (PSI, JSD, standardized W1, SMD), 1-hour block-bootstrap 95% CIs, and deduplication stability."
+  },
+  "sampling_and_bootstrap_config": {
+    "random_seed": 42,
+    "bootstrap_unit": "1-hour UTC time blocks (accounts for within-hour temporal autocorrelation)",
+    "bootstrap_replicates": 200,
+    "wasserstein_sample_cap": 20000,
+    "mmd_sample_per_period": 800,
+    "mmd_permutations": 100
+  },
+  "duplicate_and_join_sensitivity": {
+    "normal_a_unique_6tuples": 173535,
+    "normal_b_unique_6tuples": 428291,
+    "normal_a_many_to_one_keys": 18423,
+    "normal_b_many_to_one_keys": 30244,
+    "gt_rows_checked_dedup_shards": 16801188,
+    "gt_excluded_duplicate_shard": "GroundTruth_Network_16.csv",
+    "gt_6tuple_conflicts_with_normal_a": 0,
+    "gt_6tuple_conflicts_with_normal_b": 0,
+    "gt_conflict_attack_types_in_normal_b": {},
+    "gt_conflict_on_multi_row_keys": 0
+  },
+  "confounding_risks": {
+    "unique_src_ips_a": 79,
+    "unique_src_ips_b": 23298,
+    "shared_src_ips_a_b": 17,
+    "unique_dst_ips_a": 879,
+    "unique_dst_ips_b": 5655,
+    "shared_dst_ips_a_b": 454,
+    "categorical_period_a": {
+      "proto": {
+        "tcp": {
+          "count": 113644,
+          "pct": 56.57
+        },
+        "udp": {
+          "count": 80383,
+          "pct": 40.01
+        },
+        "icmp": {
+          "count": 6871,
+          "pct": 3.42
+        }
+      },
+      "service": {
+        "-": {
+          "count": 148525,
+          "pct": 73.93
+        },
+        "dns": {
+          "count": 51130,
+          "pct": 25.45
+        },
+        "ssl": {
+          "count": 887,
+          "pct": 0.44
+        },
+        "http": {
+          "count": 279,
+          "pct": 0.14
+        },
+        "dhcp": {
+          "count": 77,
+          "pct": 0.04
+        }
+      },
+      "conn_state": {
+        "OTH": {
+          "count": 121377,
+          "pct": 60.42
+        },
+        "S0": {
+          "count": 55525,
+          "pct": 27.64
+        },
+        "SHR": {
+          "count": 20180,
+          "pct": 10.04
+        },
+        "SF": {
+          "count": 3346,
+          "pct": 1.67
+        },
+        "RSTO": {
+          "count": 215,
+          "pct": 0.11
+        },
+        "RSTR": {
+          "count": 99,
+          "pct": 0.05
+        },
+        "RSTRH": {
+          "count": 55,
+          "pct": 0.03
+        },
+        "SH": {
+          "count": 29,
+          "pct": 0.01
+        }
+      }
+    },
+    "categorical_period_b": {
+      "proto": {
+        "tcp": {
+          "count": 342692,
+          "pct": 57.55
+        },
+        "udp": {
+          "count": 246579,
+          "pct": 41.41
+        },
+        "icmp": {
+          "count": 6211,
+          "pct": 1.04
+        }
+      },
+      "service": {
+        "-": {
+          "count": 363255,
+          "pct": 61.0
+        },
+        "dns": {
+          "count": 168443,
+          "pct": 28.29
+        },
+        "http": {
+          "count": 61032,
+          "pct": 10.25
+        },
+        "ssl": {
+          "count": 2720,
+          "pct": 0.46
+        },
+        "dhcp": {
+          "count": 8,
+          "pct": 0.0
+        },
+        "gssapi;ntlm;smb": {
+          "count": 7,
+          "pct": 0.0
+        },
+        "ftp": {
+          "count": 6,
+          "pct": 0.0
+        },
+        "ftp-data": {
+          "count": 6,
+          "pct": 0.0
+        }
+      },
+      "conn_state": {
+        "S0": {
+          "count": 201605,
+          "pct": 33.86
+        },
+        "SF": {
+          "count": 172631,
+          "pct": 28.99
+        },
+        "OTH": {
+          "count": 155057,
+          "pct": 26.04
+        },
+        "SHR": {
+          "count": 27754,
+          "pct": 4.66
+        },
+        "SH": {
+          "count": 26255,
+          "pct": 4.41
+        },
+        "S1": {
+          "count": 6495,
+          "pct": 1.09
+        },
+        "RSTR": {
+          "count": 1294,
+          "pct": 0.22
+        },
+        "REJ": {
+          "count": 1125,
+          "pct": 0.19
+        }
+      }
+    }
+  },
+  "embargo_sensitivity": {
+    "period_a_duration_gt_60s": {
+      "count": 2597,
+      "pct": 1.293
+    },
+    "period_a_duration_gt_300s": {
+      "count": 980,
+      "pct": 0.488
+    },
+    "period_a_duration_gt_900s": {
+      "count": 410,
+      "pct": 0.204
+    },
+    "period_b_duration_gt_60s": {
+      "count": 2637,
+      "pct": 0.443
+    },
+    "period_b_duration_gt_300s": {
+      "count": 266,
+      "pct": 0.045
+    },
+    "period_b_duration_gt_900s": {
+      "count": 169,
+      "pct": 0.028
+    },
+    "recommendation": "Prefer 5-minute (300s) or 15-minute (900s) embargo plus active-flow end-time (ts + duration) boundary exclusion over 60s alone."
+  },
+  "temporal_protocol_recommendations": {
+    "Protocol_A_Natural_Chronological": "APPROVED_WITH_CONFOUNDING_DISCLOSURE (report Period A vs Period B normal FPR shift separately from attack TPR; document 18-day gap and 295x src_ip composition change).",
+    "Protocol_B_Novel_Attack_Emergence": "APPROVED_FOR_BINARY_AND_UNSEEN_ATTACK_EVALUATION (do not claim as pure benign drift).",
+    "Protocol_C_Controlled_Synthetic_Drift": "APPROVED_AS_COMPLEMENTARY_SIMULATION (explicitly specify mechanism, onset, duration, severity, seed; keep strictly separate from natural data)."
+  },
+  "e2_e3_feasibility": {
+    "E2_Concept_Drift": {
+      "status": "CONDITIONAL",
+      "natural_benign_covariate_shift": "OBSERVED_BUT_CONFOUNDED (MMD^2=0.189, p=0.0099; src_pkts PSI=1.57; confounded by 295x src_ip explosion & 73x HTTP jump)",
+      "natural_label_prior_shift": "VERIFIED (0% attack Apr 2-4 vs 97.3% attack Apr 23-29)",
+      "conditional_concept_drift_P_y_given_x": "UNVERIFIED (cannot isolate P(y|x) shift from unseen attack introduction and device composition change)",
+      "abrupt_novel_attack_emergence": "VERIFIED_SUPPORTED",
+      "synthetic_gradual_recurring_drift": "SUPPORTED_IF_EXPLICITLY_SIMULATED"
+    },
+    "E3_Benign_Drift_vs_Poisoning": {
+      "status": "CONDITIONAL_WITH_STRICT_SIMULATION_DISCLOSURE",
+      "rationale": "Real confounded benign covariate shift exists between Period A and Period B normal flows, enabling empirical benign-shift false-alarm stress testing alongside explicitly seeded synthetic FL poisoning. However, because Period B benign shift is confounded by capture/device composition (not pure organic environmental drift) and poisoning is simulated, E3 cannot be upgraded to PASS and requires explicit confounding + simulation disclosure."
+    }
+  },
+  "limitations_and_reproducibility": [
+    "All fitted parameters (bin edges, standardization mean/std, median bandwidth) originated strictly from Period A.",
+    "Period B normal shift is heavily confounded by 295x unique src_ip increase (79 -> 23,298, only 17 shared) and 73x HTTP service increase (0.14% -> 10.25%).",
+    "Zero-inflated features (missed_bytes, http_request_body_len, http_response_body_len) collapse Period A quantile bins, yielding PSI/JSD=0.0 despite tiny nonzero SMDs.",
+    "No neural network training, FL execution, or split file creation occurred in Phase 1C."
+  ]
+}

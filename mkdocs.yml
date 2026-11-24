@@ -1,0 +1,197 @@
+site_name: DA-FIDAF Research Documentation
+site_description: >-
+  Drift-Aware Federated Intrusion Detection and Attribution Framework for
+  heterogeneous IoT/IIoT networks under Non-IID data, concept drift, and
+  adversarial threats.
+docs_dir: docs
+site_dir: site
+exclude_docs: |
+  repository/proposed_staged_updates/
+strict: false
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+extra:
+  research_status: "Active PhD Research — Experimental Validation and Development"
+  phase_3b2_verdict: "Conditional Pass"
+  methodology_alignment_verdict: "Insufficient Source Evidence"
+  privacy_mode: "Non-DP Experimental Baseline Only"
+  license_status: "Pending Researcher / Institutional Confirmation"
+
+nav:
+  - Home:
+      - Overview: index.md
+      - Project Status (Stage 2–6 Baseline): PROJECT_STATUS.md
+      - Repository Policy: REPOSITORY_POLICY.md
+
+  - Research:
+      - Research Overview: research/research_overview.md
+      - Problem Statement: research/problem_statement.md
+      - Research Objectives: research/research_objectives.md
+      - Research Questions: research/research_questions.md
+      - Research Contributions: research/research_contributions.md
+      - Scope and Limitations: research/scope_and_limitations.md
+
+  - Architecture:
+      - System Architecture: architecture/system_architecture.md
+      - Federated Learning: architecture/federated_learning.md
+      - Local IDS Model: architecture/local_ids.md
+      - Attribution Engine: architecture/attribution_engine.md
+      - Drift Adaptation: architecture/drift_adaptation.md
+      - Risk-Aware Aggregation: architecture/risk_aware_aggregation.md
+      - Figure Catalog (FIG-01–FIG-10): architecture/figures/FIGURE_CATALOG.md
+      - Engineering Specifications:
+          - Portable Architecture: architecture/PORTABLE_ARCHITECTURE.md
+          - Data Pipeline Spec: architecture/DATA_PIPELINE_SPECIFICATION.md
+          - Federated Learning Spec: architecture/FEDERATED_LEARNING_SPECIFICATION.md
+          - Drift & Attribution Spec: architecture/DRIFT_AND_ATTACK_ATTRIBUTION_SPECIFICATION.md
+          - Evaluation Protocol: architecture/EVALUATION_PROTOCOL.md
+          - IEEE Visualization Spec: architecture/IEEE_VISUALIZATION_SPECIFICATION.md
+      - Phase 2 Implementation History:
+          - Implementation Blueprint: architecture/PHASE_2_IMPLEMENTATION_BLUEPRINT.md
+          - Implementation Report: architecture/PHASE_2_IMPLEMENTATION_REPORT.md
+          - Module Status: architecture/PHASE_2_MODULE_STATUS.md
+          - Phase 2.1 Remediation Plan: architecture/PHASE_2_1_REMEDIATION_PLAN.md
+          - Phase 2.2 Remediation Report: architecture/PHASE_2_2_REMEDIATION_REPORT.md
+          - Phase 2.2 Acceptance Gate: architecture/PHASE_2_2_ACCEPTANCE_GATE_REPORT.md
+
+  - Methodology Alignment:
+      - Alignment Verdict: methodology/DA_FIDAF_METHODOLOGY_ALIGNMENT_VERDICT.md
+      - Source Inventory: methodology/ORIGINAL_METHODOLOGY_SOURCE_INVENTORY.md
+      - Original Methodology Spec: methodology/DA_FIDAF_ORIGINAL_METHODOLOGY_SPECIFICATION.md
+      - Traceability Matrix: methodology/DA_FIDAF_METHODOLOGY_TRACEABILITY_MATRIX.md
+      - Architecture Alignment Audit: methodology/DA_FIDAF_ARCHITECTURE_ALIGNMENT_AUDIT.md
+      - Experiment Alignment Audit: methodology/DA_FIDAF_EXPERIMENT_ALIGNMENT_AUDIT.md
+      - Method Gap Register: methodology/DA_FIDAF_METHOD_GAP_REGISTER.md
+      - Remediation Blueprint: methodology/DA_FIDAF_ORIGINAL_METHOD_REMEDIATION_BLUEPRINT.md
+
+  - Datasets:
+      - Dataset Inventory: datasets/dataset_inventory.md
+      - Dataset Provenance: datasets/dataset_provenance.md
+      - Preprocessing Pipeline: datasets/preprocessing.md
+      - Data Governance: datasets/data_governance.md
+      - Phase 1 & Phase 3 Audits:
+          - Phase 1 Transition Readiness: dataset/PHASE_1_TRANSITION_READINESS.md
+          - Phase 1 Research Readiness Gate (Report 24): dataset/phase1/24_PHASE_1_RESEARCH_READINESS_GATE.md
+          - Phase 3A ToN-IoT Integrity: dataset/phase3/PHASE_3A_TON_IOT_INTEGRITY_REPORT.md
+          - Phase 3A.1 Dataset Consolidation: dataset/phase3/PHASE_3A_1_DATASET_CONSOLIDATION.md
+          - Phase 3B Dataset Selection & Split Plan: dataset/phase3/PHASE_3B_DATASET_SELECTION_AND_SPLIT_PLAN.md
+
+  - Experiments:
+      - Experimental Protocol: experiments/experimental_protocol.md
+      - Execution Guide: experiments/EXPERIMENT_EXECUTION_GUIDE.md
+      - Phase 3A Pilot:
+          - Overview: experiments/phase3a/index.md
+          - Pipeline Validation: experiments/phase3/PHASE_3A_PIPELINE_VALIDATION_REPORT.md
+          - Pilot Results: experiments/phase3/PHASE_3A_PILOT_RESULTS.md
+          - E1 Diagnostic Audit: experiments/phase3/PHASE_3A_1_E1_DIAGNOSTIC_AUDIT.md
+          - E2 Diagnostic Audit: experiments/phase3/PHASE_3A_1_E2_DIAGNOSTIC_AUDIT.md
+      - Phase 3B Full-Scale & 3B.1 Audit:
+          - Overview: experiments/phase3b/index.md
+          - Final Experiment Protocol: experiments/phase3/PHASE_3B_FINAL_EXPERIMENT_PROTOCOL.md
+          - Execution Report: experiments/phase3/PHASE_3B_EXECUTION_REPORT.md
+          - E1 Results: experiments/phase3/PHASE_3B_E1_RESULTS.md
+          - E2 Results: experiments/phase3/PHASE_3B_E2_RESULTS.md
+          - E3 Results: experiments/phase3/PHASE_3B_E3_RESULTS.md
+          - E4 Results: experiments/phase3/PHASE_3B_E4_RESULTS.md
+          - E6 Results: experiments/phase3/PHASE_3B_E6_RESULTS.md
+          - Phase 3B.1 Independent Audit: experiments/phase3/PHASE_3B_1_INDEPENDENT_AUDIT_REPORT.md
+          - Phase 3B.1 Statistical Reanalysis: experiments/phase3/PHASE_3B_1_STATISTICAL_REANALYSIS.md
+          - Phase 3B.1 Reproducibility Report: experiments/phase3/PHASE_3B_1_REPRODUCIBILITY_REPORT.md
+      - Phase 3B.2 Remediation:
+          - Overview: experiments/phase3b_2/index.md
+          - Remediation Report: experiments/phase3/PHASE_3B_2_REMEDIATION_REPORT.md
+          - E1 W1 Domain Shift Diagnostics: experiments/phase3/PHASE_3B_2_E1_DOMAIN_SHIFT_DIAGNOSTICS.md
+          - E3 Attribution Improvement: experiments/phase3/PHASE_3B_2_E3_ATTRIBUTION_IMPROVEMENT.md
+          - E6 Genuine Ablation Validation: experiments/phase3/PHASE_3B_2_E6_ABLATION_VALIDATION.md
+          - Statistical Reanalysis: experiments/phase3/PHASE_3B_2_STATISTICAL_REANALYSIS.md
+          - Publication Asset Revision: experiments/phase3/PHASE_3B_2_PUBLICATION_ASSET_REVISION.md
+          - Integrity Manifest Report: experiments/phase3/PHASE_3B_2_INTEGRITY_MANIFEST_REPORT.md
+          - Independent Technical Review: experiments/phase3/PHASE_3B_2_INDEPENDENT_REVIEW.md
+
+  - Results:
+      - Results Overview: results/results_overview.md
+      - Limitations and Caveats: results/limitations.md
+      - Results Figure Catalog: results/figures/FIGURE_CATALOG.md
+
+  - Development:
+      - Installation: development/installation.md
+      - Configuration: development/configuration.md
+      - Running Experiments: development/running_experiments.md
+      - Testing & Quality: development/testing.md
+      - Troubleshooting: development/troubleshooting.md
+
+  - Governance & Security:
+      - Repository Inventory: repository/REPOSITORY_INVENTORY.md
+      - Git Baseline Preservation: repository/GIT_BASELINE_PRESERVATION_REPORT.md
+      - Security Audit: repository/REPOSITORY_SECURITY_AUDIT.md
+      - Release Readiness: repository/REPOSITORY_RELEASE_READINESS.md
+      - GitHub Project Configuration: repository/GITHUB_PROJECT_CONFIGURATION.md
+      - GitHub Publication Checklist: repository/GITHUB_PUBLICATION_CHECKLIST.md
+      - Pre-Publication Diff Review: repository/PRE_PUBLICATION_FILE_DIFF_REVIEW.md
+      - Citation Metadata Review: repository/CITATION_METADATA_REVIEW.md
+      - Architecture Diagram Report: repository/ARCHITECTURE_DIAGRAM_INTEGRATION_REPORT.md
+      - MkDocs Build Verification: repository/MKDOCS_BUILD_VERIFICATION.md
+      - Option A Commit Plan: repository/OPTION_A_COMMIT_PLAN.md
+      - Pre-Publication Final Checklist: repository/PRE_PUBLICATION_FINAL_CHECKLIST.md
+      - Final Configuration Approval Summary: repository/FINAL_CONFIGURATION_APPROVAL_SUMMARY.md
+      - Pre-Commit Readiness Report: repository/PRE_COMMIT_READINESS_REPORT.md
+      - Privacy & Security Reports:
+          - Phase 2.1 Independent Audit: security/PHASE_2_1_INDEPENDENT_TECHNICAL_AUDIT.md
+          - Phase 2.2 Security Review: security/PHASE_2_2_SECURITY_REVIEW.md
+          - Phase 3A Privacy Validation: security/PHASE_3A_PRIVACY_VALIDATION_REPORT.md
+          - Phase 3B Non-DP Scope & Limitations: security/PHASE_3B_NON_DP_SCOPE_AND_LIMITATIONS.md
+
+  - References:
+      - Citation Policy: references/citation_policy.md

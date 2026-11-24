@@ -1,0 +1,486 @@
+{
+  "schema_version": "1.0.0",
+  "audit_metadata": {
+    "phase": "Phase 1B",
+    "audit_timestamp_utc": "2026-11-24T03:38:32Z",
+    "dataset_family": "ToN-IoT",
+    "elapsed_seconds": 124.05,
+    "scope": "Full read-only streaming temporal and ground-truth alignment audit of all 23 Processed_Network_dataset CSVs (22,339,021 rows), all 30 SecuityEvents_GroundTruth_datasets CSVs, and Train_Test_Network_dataset"
+  },
+  "timestamp_fields": {
+    "Processed_Network_dataset": {
+      "column_name": "ts",
+      "data_type": "integer_unix_epoch_seconds",
+      "valid_count": 22339021,
+      "invalid_count": 0,
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "unique_timestamps": 392633,
+      "duplicate_timestamp_rows": 21946388,
+      "out_of_order_transitions": 21,
+      "semantic_type": "capture_connection_start_time_zeek_bro_ts",
+      "timezone_assumption": "UTC (Unix epoch seconds)"
+    },
+    "Train_Test_Network_dataset": {
+      "column_name": null,
+      "data_type": null,
+      "valid_count": 0,
+      "invalid_count": 0,
+      "missing_count": 211043,
+      "missing_pct": 100.0,
+      "semantic_type": "ts_stripped_during_train_test_generation",
+      "timezone_assumption": null
+    },
+    "GroundTruth_Network_datasets": {
+      "column_name": "ts",
+      "data_type": "integer_unix_epoch_seconds",
+      "file_count": 18,
+      "total_rows_raw": 17801188,
+      "duplicate_shard_defect": {
+        "files": [
+          "SecuityEvents_GroundTruth_datasets/SecurityEvents_Network_datasets/GroundTruth_Network_15.csv",
+          "SecuityEvents_GroundTruth_datasets/SecurityEvents_Network_datasets/GroundTruth_Network_16.csv"
+        ],
+        "sha256": "d1d4cb491cb6edda3523f7424d24ea1afd4496a933e60b3ec357286f7f0f542f",
+        "exact_duplicate": true,
+        "duplicate_rows": 1000000
+      }
+    },
+    "GroundTruth_IoT_datasets": {
+      "column_name": "ts, time",
+      "data_type": "integer_unix_epoch_seconds_plus_local_HHMMSS",
+      "file_count": 7,
+      "observed_time_column_offset_seconds": -25200,
+      "timezone_note": "Observed `time` column lags UTC `ts` by -25200s (UTC-7 / PDT); always key on numeric Unix `ts`, never local `time` strings."
+    }
+  },
+  "verified_temporal_ranges": {
+    "Processed_Network_dataset_global": {
+      "min_ts": 1554198358,
+      "max_ts": 1556549156,
+      "min_ts_utc": "2019-04-02T09:45:58Z",
+      "max_ts_utc": "2019-04-29T14:45:56Z",
+      "capture_gap_utc": "2019-04-05 to 2019-04-22 (18 days with 0 records)",
+      "normal_only_baseline_days": [
+        "2019-04-02",
+        "2019-04-03",
+        "2019-04-04"
+      ],
+      "attack_campaign_days": [
+        "2019-04-23",
+        "2019-04-24",
+        "2019-04-25",
+        "2019-04-26",
+        "2019-04-27",
+        "2019-04-28",
+        "2019-04-29"
+      ],
+      "daily_type_counts": {
+        "2019-04-02": {
+          "normal": 43377
+        },
+        "2019-04-03": {
+          "normal": 121945
+        },
+        "2019-04-04": {
+          "normal": 35576
+        },
+        "2019-04-23": {
+          "scanning": 3733109,
+          "normal": 22476
+        },
+        "2019-04-24": {
+          "dos": 2184823,
+          "normal": 89324,
+          "scanning": 3407052
+        },
+        "2019-04-25": {
+          "normal": 81742,
+          "dos": 1190505,
+          "injection": 452659,
+          "ddos": 3504493
+        },
+        "2019-04-26": {
+          "ddos": 2660515,
+          "normal": 91576,
+          "password": 1169187
+        },
+        "2019-04-27": {
+          "password": 549381,
+          "normal": 48578,
+          "xss": 2108944
+        },
+        "2019-04-28": {
+          "ransomware": 72805,
+          "normal": 231561,
+          "backdoor": 273545
+        },
+        "2019-04-29": {
+          "backdoor": 234571,
+          "normal": 30225,
+          "mitm": 1052
+        }
+      }
+    },
+    "Processed_Network_shards": [
+      {
+        "file": "Network_dataset_1.csv",
+        "rows": 1000000,
+        "unique_ts": 103119,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-02T09:45:58Z",
+        "max_ts_utc": "2019-04-23T13:23:00Z",
+        "types": {
+          "normal": 208679,
+          "scanning": 791321
+        }
+      },
+      {
+        "file": "Network_dataset_2.csv",
+        "rows": 1000000,
+        "unique_ts": 1621,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-23T13:23:00Z",
+        "max_ts_utc": "2019-04-23T13:50:14Z",
+        "types": {
+          "scanning": 994283,
+          "normal": 5717
+        }
+      },
+      {
+        "file": "Network_dataset_3.csv",
+        "rows": 1000000,
+        "unique_ts": 623,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-23T13:50:14Z",
+        "max_ts_utc": "2019-04-23T14:00:36Z",
+        "types": {
+          "scanning": 997180,
+          "normal": 2820
+        }
+      },
+      {
+        "file": "Network_dataset_4.csv",
+        "rows": 1000000,
+        "unique_ts": 1531,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-23T14:00:36Z",
+        "max_ts_utc": "2019-04-24T03:20:51Z",
+        "types": {
+          "scanning": 993744,
+          "normal": 6256
+        }
+      },
+      {
+        "file": "Network_dataset_5.csv",
+        "rows": 1000000,
+        "unique_ts": 646,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-24T03:20:51Z",
+        "max_ts_utc": "2019-04-24T03:31:36Z",
+        "types": {
+          "scanning": 996343,
+          "normal": 3657
+        }
+      },
+      {
+        "file": "Network_dataset_6.csv",
+        "rows": 1000000,
+        "unique_ts": 2665,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-24T03:31:36Z",
+        "max_ts_utc": "2019-04-24T04:16:00Z",
+        "types": {
+          "scanning": 986527,
+          "normal": 13473
+        }
+      },
+      {
+        "file": "Network_dataset_7.csv",
+        "rows": 1000000,
+        "unique_ts": 1574,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-24T04:16:00Z",
+        "max_ts_utc": "2019-04-24T06:12:48Z",
+        "types": {
+          "scanning": 992501,
+          "normal": 7499
+        }
+      },
+      {
+        "file": "Network_dataset_8.csv",
+        "rows": 1000000,
+        "unique_ts": 7833,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-24T06:12:48Z",
+        "max_ts_utc": "2019-04-24T20:13:13Z",
+        "types": {
+          "scanning": 388262,
+          "normal": 21306,
+          "dos": 590432
+        }
+      },
+      {
+        "file": "Network_dataset_9.csv",
+        "rows": 1000000,
+        "unique_ts": 8303,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-24T20:13:13Z",
+        "max_ts_utc": "2019-04-24T22:31:44Z",
+        "types": {
+          "dos": 975261,
+          "normal": 24739
+        }
+      },
+      {
+        "file": "Network_dataset_10.csv",
+        "rows": 1000000,
+        "unique_ts": 8321,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-24T22:31:44Z",
+        "max_ts_utc": "2019-04-25T00:50:26Z",
+        "types": {
+          "dos": 969998,
+          "normal": 30002
+        }
+      },
+      {
+        "file": "Network_dataset_11.csv",
+        "rows": 1000000,
+        "unique_ts": 11242,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-25T00:50:26Z",
+        "max_ts_utc": "2019-04-25T07:05:29Z",
+        "types": {
+          "dos": 839637,
+          "normal": 35168,
+          "injection": 125195
+        }
+      },
+      {
+        "file": "Network_dataset_12.csv",
+        "rows": 1000000,
+        "unique_ts": 18157,
+        "out_of_order": 2,
+        "min_ts_utc": "2019-04-25T07:05:29Z",
+        "max_ts_utc": "2019-04-25T17:01:59Z",
+        "types": {
+          "injection": 327464,
+          "normal": 32806,
+          "ddos": 639730
+        }
+      },
+      {
+        "file": "Network_dataset_13.csv",
+        "rows": 1000000,
+        "unique_ts": 10565,
+        "out_of_order": 5,
+        "min_ts_utc": "2019-04-25T17:01:59Z",
+        "max_ts_utc": "2019-04-25T19:59:08Z",
+        "types": {
+          "ddos": 999083,
+          "normal": 917
+        }
+      },
+      {
+        "file": "Network_dataset_14.csv",
+        "rows": 1000000,
+        "unique_ts": 7574,
+        "out_of_order": 3,
+        "min_ts_utc": "2019-04-25T19:59:08Z",
+        "max_ts_utc": "2019-04-25T22:06:21Z",
+        "types": {
+          "ddos": 999417,
+          "normal": 583
+        }
+      },
+      {
+        "file": "Network_dataset_15.csv",
+        "rows": 1000000,
+        "unique_ts": 7755,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-25T22:06:21Z",
+        "max_ts_utc": "2019-04-26T00:16:43Z",
+        "types": {
+          "ddos": 998940,
+          "normal": 1060
+        }
+      },
+      {
+        "file": "Network_dataset_16.csv",
+        "rows": 1000000,
+        "unique_ts": 7969,
+        "out_of_order": 2,
+        "min_ts_utc": "2019-04-26T00:16:43Z",
+        "max_ts_utc": "2019-04-26T02:30:34Z",
+        "types": {
+          "ddos": 998109,
+          "normal": 1891
+        }
+      },
+      {
+        "file": "Network_dataset_17.csv",
+        "rows": 1000000,
+        "unique_ts": 10059,
+        "out_of_order": 1,
+        "min_ts_utc": "2019-04-26T02:30:34Z",
+        "max_ts_utc": "2019-04-26T05:27:11Z",
+        "types": {
+          "ddos": 966289,
+          "normal": 33711
+        }
+      },
+      {
+        "file": "Network_dataset_18.csv",
+        "rows": 1000000,
+        "unique_ts": 21908,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-26T05:27:11Z",
+        "max_ts_utc": "2019-04-26T17:54:05Z",
+        "types": {
+          "ddos": 563440,
+          "normal": 49436,
+          "password": 387124
+        }
+      },
+      {
+        "file": "Network_dataset_19.csv",
+        "rows": 1000000,
+        "unique_ts": 27058,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-26T17:54:05Z",
+        "max_ts_utc": "2019-04-27T01:25:17Z",
+        "types": {
+          "password": 987292,
+          "normal": 12708
+        }
+      },
+      {
+        "file": "Network_dataset_20.csv",
+        "rows": 1000000,
+        "unique_ts": 16376,
+        "out_of_order": 0,
+        "min_ts_utc": "2019-04-27T01:25:17Z",
+        "max_ts_utc": "2019-04-27T07:57:43Z",
+        "types": {
+          "password": 344152,
+          "normal": 21082,
+          "xss": 634766
+        }
+      },
+      {
+        "file": "Network_dataset_21.csv",
+        "rows": 1000000,
+        "unique_ts": 11308,
+        "out_of_order": 1,
+        "min_ts_utc": "2019-04-27T07:57:43Z",
+        "max_ts_utc": "2019-04-27T11:06:41Z",
+        "types": {
+          "xss": 985593,
+          "normal": 14407
+        }
+      },
+      {
+        "file": "Network_dataset_22.csv",
+        "rows": 1000000,
+        "unique_ts": 58458,
+        "out_of_order": 3,
+        "min_ts_utc": "2019-04-27T11:06:41Z",
+        "max_ts_utc": "2019-04-28T21:05:32Z",
+        "types": {
+          "xss": 488585,
+          "normal": 234988,
+          "ransomware": 72805,
+          "backdoor": 203622
+        }
+      },
+      {
+        "file": "Network_dataset_23.csv",
+        "rows": 339021,
+        "unique_ts": 47990,
+        "out_of_order": 4,
+        "min_ts_utc": "2019-04-28T21:05:32Z",
+        "max_ts_utc": "2019-04-29T14:45:56Z",
+        "types": {
+          "backdoor": 304494,
+          "normal": 33475,
+          "mitm": 1052
+        }
+      }
+    ]
+  },
+  "ground_truth_alignment": {
+    "network_shared_join_keys": [
+      "ts",
+      "src_ip",
+      "src_port",
+      "dst_ip",
+      "dst_port",
+      "proto",
+      "type"
+    ],
+    "network_gt_ts_overlap_pct": 100.0,
+    "iot_gt_ts_overlap_pct_range": [
+      99.56,
+      100.0
+    ],
+    "linux_gt_ts_overlap_pct_range": [
+      99.68,
+      100.0
+    ],
+    "windows_gt_ts_overlap_pct_range": [
+      98.61,
+      100.0
+    ],
+    "alignment_status": "VERIFIED_TIMESTAMP_AND_6TUPLE_COMPATIBLE_WITH_DUPLICATE_SHARD_CAVEAT",
+    "ambiguities_and_risks": [
+      "GroundTruth_Network_15.csv and GroundTruth_Network_16.csv are bit-for-bit identical duplicates (1,000,000 duplicated rows).",
+      "Average ~56.9 network rows share the same integer-second ts; alignment must use full 6-tuple (ts, src_ip, src_port, dst_ip, dst_port, proto), never ts alone.",
+      "Processed_Network_dataset already contains label and type columns; joining GroundTruth_Network_* as input features would cause direct target leakage."
+    ]
+  },
+  "label_mapping_status": {
+    "processed_network_classes": [
+      "backdoor",
+      "ddos",
+      "dos",
+      "injection",
+      "mitm",
+      "normal",
+      "password",
+      "ransomware",
+      "scanning",
+      "xss"
+    ],
+    "class_window_disjointness": "Each attack class occurs in a narrow 1-2 day campaign window (e.g., scanning Apr 23-24, dos Apr 24-25, injection Apr 25, ddos Apr 25-26, password Apr 26-27, xss Apr 27, ransomware Apr 28, backdoor Apr 28-29, mitm Apr 29)."
+  },
+  "split_feasibility": {
+    "global_chronological_binary_and_novel_attack_drift": "SUPPORTED_ON_PROCESSED_NETWORK_DATASET",
+    "closed_set_multiclass_global_chronological_split": "NOT_SUPPORTED_DUE_TO_DISJOINT_ATTACK_WINDOWS",
+    "per_class_chronological_split": "SUPPORTED_WITH_EXPLICIT_TIME_BOUNDARY_AND_DEDUP",
+    "train_test_network_csv_chronological_split": "NOT_SUPPORTED_NO_TS_COLUMN"
+  },
+  "leakage_risks": [
+    "Adjacent Processed_Network shards share exact boundary timestamps (e.g., shard 1 ends and shard 2 starts at 2019-04-23T13:23:00Z); splits must enforce a timestamp gap or exact ts-group exclusion.",
+    "GroundTruth_Network_15.csv and GroundTruth_Network_16.csv are identical duplicates (SHA-256 match).",
+    "High same-second burst multiplicity (~56.9 rows/sec) means random splitting splits identical attack bursts across train and test.",
+    "src_ip, dst_ip, src_port, dst_port must be excluded from model features to prevent host/IP memorization."
+  ],
+  "e2_e3_reassessment": {
+    "E2_Concept_Drift": {
+      "status": "CONDITIONAL",
+      "natural_abrupt_attack_emergence_drift": "SUPPORTED (verified staged daily attack campaign on Processed_Network_dataset Apr 2-4 baseline + Apr 23-29 campaign)",
+      "natural_gradual_or_recurring_benign_drift": "NOT_SUPPORTED (18-day capture gap Apr 5-22; non-recurring single-window attacks)",
+      "controlled_synthetic_drift": "SUPPORTED_IF_EXPLICITLY_LABELED_SYNTHETIC"
+    },
+    "E3_Benign_Drift_vs_Poisoning": {
+      "status": "HOLD",
+      "rationale": "Natural benign environmental drift across continuous non-attack periods is limited by the 18-day gap (Apr 5-22), and no native poisoning ground truth exists. Remains HOLD until benign-shift vs. synthetic-poisoning protocol is formally defined and validated."
+    }
+  },
+  "limitations_and_unresolved_questions": [
+    "Two 20 GB raw ToN-IoT network ZIPs (network_data.zip and normal_attack_pcaps.zip) remain truncated/HOLD, preventing raw PCAP re-verification.",
+    "18-day capture gap (2019-04-05 to 2019-04-22) separates normal-only baseline from attack campaign; benign distribution shift across that gap must be measured empirically before claiming organic benign drift.",
+    "21 out-of-order ts transitions exist across 22,339,021 rows (0.000094%); chronological pipelines must stable-sort by ts before windowing."
+  ]
+}

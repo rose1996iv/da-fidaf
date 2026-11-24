@@ -1,0 +1,48 @@
+name: CI — Lint, Repo Guard, and Tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-test:
+    name: Python 3.12 Ruff, Repo Guard & Pytest (Synthetic Only)
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Sync locked environment
+        run: uv sync --frozen
+
+      - name: Run Ruff lint check
+        run: uv run ruff check src tests --no-cache
+
+      - name: Run unit and synthetic integration tests (no raw datasets)
+        run: uv run pytest -v -p no:cacheprovider tests
+
+      - name: Run repository hygiene guard on tracked files
+        run: |
+          git ls-files -z | xargs -0 uv run python -m dafidaf.repo_guard check-files --max-bytes 10485760

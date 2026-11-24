@@ -1,0 +1,9 @@
+experiment_id: E5
+name: Cross-Dataset and Cross-Environment Generalization
+status: HOLD
+reason: "Blocked pending formal semantic feature and label ontology validation across CICIoT2023, ToN-IoT, and Edge-IIoTset."
+datasets:
+  silos: [ToN-IoT, CICIoT2023, Edge-IIoTset]
+required_before_unblock:
+  - "Validated semantic feature alignment specification (no naive column-name merging)"
+  - "Approved configs/datasets/label_taxonomy.yaml with verified_for_e5=true"

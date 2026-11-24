@@ -1,0 +1,19 @@
+experiment_id: E4
+name: Adaptive vs Byzantine and Malicious Clients under Robust Aggregation
+status: CONDITIONAL
+seed: 42
+seeds_multi_run: [42, 101, 202]
+datasets:
+  primary: ToN-IoT (train_test_network.csv)
+  supporting: [CICIoT2023 (MERGED_CSV), Edge-IIoTset (ML-EdgeIIoT-dataset.csv)]
+federation:
+  n_clients: 10
+  client_type: simulated_logical_gateway
+  rounds: 10
+  aggregation: multi_krum
+  aggregators_compared: [fedavg, median, trimmed_mean, krum, multi_krum]
+  partition_strategy: label_skew
+byzantine:
+  malicious_clients: [sim_gw_01, sim_gw_02]
+  attack_grid: [sign_flip, scaled_update, random_update, model_replacement]
+  scale_factor: 8.0

@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "DA-FIDAF: Drift-Aware Federated Intrusion Detection and Attribution Framework"
+message: >-
+  This is an active PhD research repository under experimental validation and
+  development. No DOI, license, or formal publication venue has been assigned
+  yet. Update publication identifiers once formally assigned.
+type: software
+version: "0.1.0"
+date-released: "2026-11-24"
+authors:
+  - given-names: "Joseph"
+abstract: >-
+  A portable, reproducible PhD research framework for investigating drift-aware
+  federated intrusion detection, multi-evidence drift-versus-attack attribution,
+  and robust aggregation in heterogeneous IoT/IIoT networks under Non-IID data,
+  concept drift, and adversarial threats. Current evaluated results cover
+  Non-DP baselines on overlapping ToN-IoT windows using simulated logical
+  gateways.
+keywords:
+  - federated-learning
+  - intrusion-detection
+  - iot-security
+  - concept-drift
+  - poisoning-attribution
+  - robust-aggregation

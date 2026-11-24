@@ -1,0 +1,42 @@
+name: Feature or Remediation Request
+description: Propose a new research module, remediation task, or engineering enhancement.
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Research or Engineering Motivation
+      description: Link to relevant gap ID (e.g., GAP-01..GAP-08), audit finding, or objective.
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Target Component
+      options:
+        - "component: attribution"
+        - "component: drift"
+        - "component: aggregation"
+        - "component: privacy"
+        - "component: ids"
+        - "component: federated-learning"
+        - "documentation / tooling"
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Design & Acceptance Criteria
+      description: Define tests, leakage checks, and expected verification outputs.
+    validations:
+      required: true
+  - type: checkboxes
+    id: governance
+    attributes:
+      label: Research Governance Checks
+      options:
+        - label: Does not modify read-only raw datasets or historical Phase 3B / 3B.2 outputs.
+          required: true
+        - label: Does not introduce unverified claims (DP guarantees, E5 execution, or unimplemented models).
+          required: true

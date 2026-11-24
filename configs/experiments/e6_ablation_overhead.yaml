@@ -1,0 +1,20 @@
+experiment_id: E6
+name: Framework Ablation and Communication/Computation Overhead
+status: CONDITIONAL
+seed: 42
+seeds_multi_run: [42, 101, 202]
+datasets:
+  primary: ToN-IoT (train_test_network.csv)
+federation:
+  n_clients: 10
+  client_type: simulated_logical_gateway
+  rounds: 10
+  aggregation: trimmed_mean
+  partition_strategy: label_skew
+ablations:
+  - full_dafidaf
+  - without_drift_detection
+  - without_robust_aggregation
+  - without_attribution
+  - without_continual_adaptation
+telemetry: [round_wall_seconds, bytes_communicated, macro_f1, false_attribution_rate]

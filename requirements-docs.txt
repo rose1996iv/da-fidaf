@@ -1,0 +1,6 @@
+# Documentation-only dependencies for DA-FIDAF MkDocs Material site.
+# Install in a dedicated docs environment or optional group without modifying
+# core runtime dependencies in pyproject.toml / uv.lock.
+mkdocs>=1.6.1,<2.0
+mkdocs-material>=9.5.49,<10.0
+pymdown-extensions>=10.12,<11.0

@@ -1,6 +1,6 @@
 # =============================================================================
 # DA-FIDAF .gitignore
-# Excludes secrets, local configs, Python caches, raw datasets, and large runs.
+# Excludes secrets, local configs, Python caches, docs builds, raw datasets, and large runs.
 # =============================================================================
 
 # --- Secrets & machine-local configuration ---
@@ -18,9 +18,12 @@ configs/paths.local.yaml
 *credential*
 !docs/security/*
 !docs/REPOSITORY_POLICY.md
+!SECURITY.md
+!.github/workflows/secret-scan.yml
 
 # --- Python environments & caches ---
 .venv/
+.venv-docs/
 venv/
 ENV/
 __pycache__/
@@ -36,6 +39,9 @@ dist/
 .coverage
 htmlcov/
 .ipynb_checkpoints/
+
+# --- Documentation build outputs ---
+site/
 
 # --- IDE & OS artifacts ---
 .vscode/

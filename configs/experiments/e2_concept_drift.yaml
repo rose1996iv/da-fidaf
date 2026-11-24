@@ -1,0 +1,24 @@
+experiment_id: E2
+name: Stable Baseline vs Abrupt and Synthetic Gradual/Recurring Concept Drift
+status: CONDITIONAL
+seed: 42
+seeds_multi_run: [42, 101, 202]
+datasets:
+  primary: ToN-IoT (Processed_Network_dataset)
+temporal_protocol:
+  split_ratios: [0.70, 0.15, 0.15]
+  embargo_seconds: 300
+  embargo_sensitivity_seconds: [300, 900]
+  exclude_active_end_time: true
+  confounding_disclosure: "18-day capture gap (Apr 5-22); Period B 295x src_ip and 73x HTTP shift"
+federation:
+  n_clients: 10
+  client_type: simulated_logical_gateway
+  rounds: 10
+  aggregation: fedavg
+  partition_strategy: iid
+drift_interventions:
+  natural: abrupt_novel_attack_emergence
+  synthetic_protocol_c:
+    - {schedule: gradual, mechanism: covariate_shift, onset_round: 4, duration_rounds: 4, severity: 1.5}
+    - {schedule: recurring, mechanism: covariate_shift, onset_round: 4, duration_rounds: 3, severity: 1.5}

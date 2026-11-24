@@ -12,6 +12,9 @@
 *.sh text eol=lf
 *.cfg text eol=lf
 *.ini text eol=lf
+*.bib text eol=lf
+*.cff text eol=lf
+*.svg text eol=lf
 .gitignore text eol=lf
 .gitattributes text eol=lf
 .python-version text eol=lf
@@ -25,6 +28,7 @@
 *.jpg binary
 *.jpeg binary
 *.pdf binary
+*.eps binary
 *.ico binary
 *.whl binary
 *.zip binary

@@ -1,0 +1,57 @@
+name: Bug Report
+description: Report a defect in the DA-FIDAF code, pipeline, tests, or documentation.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Do not include raw datasets, private keys, tokens, `.env` contents, or
+        machine-specific credentials in issue descriptions.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Bug Summary
+      description: Concise description of the observed defect.
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected Component
+      options:
+        - "component: attribution"
+        - "component: drift"
+        - "component: aggregation"
+        - "component: privacy"
+        - "component: ids"
+        - "component: federated-learning"
+        - "documentation / tooling"
+    validations:
+      required: true
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Research Phase
+      options:
+        - "phase: 1"
+        - "phase: 2"
+        - "phase: 3A"
+        - "phase: 3B"
+        - "phase: 3B.2"
+        - "phase: 4"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Exact command, config YAML, seed, and Python version (use synthetic fixtures where possible).
+    validations:
+      required: true
+  - type: textarea
+    id: expected_vs_actual
+    attributes:
+      label: Expected vs. Actual Behavior
+    validations:
+      required: true

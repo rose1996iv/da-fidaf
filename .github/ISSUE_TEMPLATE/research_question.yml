@@ -1,0 +1,39 @@
+name: Research Question / Methodology Review
+description: Track an open scientific question, proposal alignment check, or experimental hypothesis.
+title: "[Research]: "
+labels: ["research"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Scientific Question or Hypothesis
+      description: State the research question, linked experiment (E1–E6), and relevant methodology gap.
+    validations:
+      required: true
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Research Phase
+      options:
+        - "phase: 1"
+        - "phase: 2"
+        - "phase: 3A"
+        - "phase: 3B"
+        - "phase: 3B.2"
+        - "phase: 4"
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Existing Evidence & Caveats
+      description: Reference exact report paths, run IDs, seeds, and statistical CIs (Student-t df=4 primary).
+    validations:
+      required: true
+  - type: textarea
+    id: decision_needed
+    attributes:
+      label: Decision or Approval Needed
+      description: Specify any researcher or supervisor sign-off required before implementation.
+    validations:
+      required: true

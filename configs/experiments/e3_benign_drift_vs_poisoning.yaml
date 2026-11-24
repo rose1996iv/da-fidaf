@@ -1,0 +1,20 @@
+experiment_id: E3
+name: Benign Distribution Drift vs Poisoning Attacks and Attribution
+status: CONDITIONAL
+seed: 42
+seeds_multi_run: [42, 101, 202]
+datasets:
+  primary: ToN-IoT (Processed_Network_dataset Period A + Period B normal)
+federation:
+  n_clients: 10
+  client_type: simulated_logical_gateway
+  rounds: 10
+  aggregation: trimmed_mean
+  partition_strategy: label_skew
+interventions:
+  benign_shift_source: empirical_confounded_period_b_normal_plus_synthetic_covariate
+  poisoning_simulations:
+    - {attack_type: label_flip, poison_fraction: 0.3, affected_clients: [sim_gw_01, sim_gw_02]}
+    - {attack_type: data_poisoning, poison_fraction: 0.3, affected_clients: [sim_gw_01, sim_gw_02]}
+    - {attack_type: backdoor, poison_fraction: 0.2, affected_clients: [sim_gw_01, sim_gw_02]}
+disclosure: "Poisoning is simulated; Period B normal shift is capture-confounded."

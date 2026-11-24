@@ -1,0 +1,93 @@
+# =============================================================================
+# DA-FIDAF .gitignore
+# Excludes secrets, local configs, Python caches, raw datasets, and large runs.
+# =============================================================================
+
+# --- Secrets & machine-local configuration ---
+.env
+.env.*
+!.env.example
+configs/paths.local.yaml
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*secret*
+*token*
+*credential*
+!docs/security/*
+!docs/REPOSITORY_POLICY.md
+
+# --- Python environments & caches ---
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# --- IDE & OS artifacts ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Experiment outputs, logs, and checkpoints ---
+runs/
+outputs/
+logs/
+*.log
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.npy
+*.npz
+
+# --- Raw & processed datasets / archives (must stay external to Git) ---
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+*.tar.bz2
+*.tar.xz
+*.gz
+*.bz2
+*.xz
+*.pcap
+*.pcapng
+*.cap
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.arrow
+*.db
+*.sqlite
+*.sqlite3
+
+# Allow explicitly curated lightweight validation summary CSVs under manifests/
+!manifests/**/*.csv

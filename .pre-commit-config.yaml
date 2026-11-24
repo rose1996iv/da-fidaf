@@ -1,0 +1,61 @@
+# DA-FIDAF Pre-Commit and Pre-Push Security & Quality Configuration
+# All external hook revisions are pinned to immutable tags (never floating branches).
+# Hooks are strictly read-only and will not auto-modify files without review.
+# Emergency bypass (`git commit --no-verify` / `git push --no-verify`) is strongly
+# discouraged and permitted only for verified emergencies documented in commit notes.
+
+default_install_hook_types:
+  - pre-commit
+  - pre-push
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+        stages: [pre-commit]
+      - id: check-toml
+        stages: [pre-commit]
+      - id: check-json
+        stages: [pre-commit]
+      - id: check-added-large-files
+        args: ["--maxkb=10240"]
+        stages: [pre-commit]
+      - id: detect-private-key
+        stages: [pre-commit]
+
+  - repo: local
+    hooks:
+      - id: dafidaf-repo-guard
+        name: DA-FIDAF read-only dataset, 10 MiB size, whitespace & EOF guard
+        entry: python -m dafidaf.repo_guard check-files --max-bytes 10485760
+        language: system
+        stages: [pre-commit]
+
+      - id: ruff-check
+        name: Ruff lint check (read-only)
+        entry: ruff check src tests --no-cache
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+
+      - id: gitleaks-pre-commit
+        name: Gitleaks secret scan (staged changes)
+        entry: python -m dafidaf.repo_guard gitleaks --mode staged --config .gitleaks.toml
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+
+      - id: gitleaks-pre-push
+        name: Gitleaks secret scan (pre-push)
+        entry: python -m dafidaf.repo_guard gitleaks --mode pre-push --config .gitleaks.toml
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: pytest-pre-push
+        name: Unit test suite (pre-push)
+        entry: pytest -q -p no:cacheprovider tests/unit
+        language: system
+        pass_filenames: false
+        stages: [pre-push]

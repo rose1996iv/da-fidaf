@@ -1,0 +1,17 @@
+# DA-FIDAF Portable Path Configuration Template
+# Copy to `configs/paths.local.yaml` (Git-ignored) or configure via `.env`.
+# Use relative paths where possible; never commit machine-specific absolute paths.
+
+paths:
+  # External storage root for immutable datasets (e.g., set via DAFIDAF_DATA_ROOT)
+  dataset_root: "<SET_VIA_ENV_OR_LOCAL_CONFIG>"
+
+  # Subdirectories relative to dataset_root (or overridden locally)
+  raw_datasets_dir: "raw"
+  processed_datasets_dir: "processed"
+
+  # Repository-relative manifest directory
+  manifest_dir: "manifests"
+
+  # Local or external directory for experiment run artifacts (e.g., set via DAFIDAF_RUNS_ROOT)
+  experiment_runs_dir: "runs"

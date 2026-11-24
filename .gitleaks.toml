@@ -1,0 +1,17 @@
+# DA-FIDAF Gitleaks v8 Configuration
+# Extends all official default Gitleaks secret-detection rules.
+# Note: `.env` is intentionally NOT allowlisted; it is Git-ignored and must remain untracked.
+
+title = "DA-FIDAF Secret Detection Policy"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Exclude local virtual environment and build cache directories only"
+paths = [
+    '''^\.venv/''',
+    '''^\.pytest_cache/''',
+    '''^\.ruff_cache/''',
+    '''(^|/)__pycache__/''',
+]

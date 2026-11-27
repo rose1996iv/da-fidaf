@@ -2,8 +2,8 @@
 
 **Scope:** Centralized repository documentation index for `EXP-GAP-1` (`CompactMLP` Drift & Continual Adaptation: `E2` + `C3`) under `I:\Projects\da-fidaf\docs\research\DA-FIDAF\GAP-1\`.  
 **Last Updated:** `2026-11-28`  
-**Current GAP-1 Status:** **`POST-CONFIRMATORY AUDIT PASSED (7/7 PASS) — AWAITING NEXT AUTHORIZATION GATE`** *(All `320` confirmatory runs, `328/328` `.sha256` sidecars, and `66/66` statistical tests independently verified; cross-stage ledger integration and `EXP-GAP-2`/`EXP-GAP-3` remain blocked pending explicit separate user authorization)*  
-**Verified Repository Baseline:** Branch `main`, `HEAD = da1b5fc69f4d172dea72b6afc74a4257ba36f048`, zero tracked file modifications.
+**Current GAP-1 Status:** **`COMPLETE & AUDITED (7/7 PASS) — APPEND-ONLY LEDGER ADDENDUM v1.1 FINALIZED (AWAITING GAP-2 AUTHORIZATION)`** *(All `320` confirmatory runs, `328/328` `.sha256` sidecars, and `66/66` statistical tests independently verified; pre-GAP-1 frozen ledgers untouched; `EXP-GAP-2`/`EXP-GAP-3` remain blocked pending explicit separate authorization)*  
+**Verified Repository Baseline:** Branch `main` (pushed to `origin/main`; prior commit `66ffe19d86166e49fb3de8d90eb2ab29c1340954`).
 
 ---
 
@@ -11,7 +11,7 @@
 
 | Relative Path (from repo root) | Document Purpose | Current Status | Version / Date | Classification | Verified SHA-256 |
 |---|---|---|---|---|---|
-| [`docs/research/DA-FIDAF/GAP-1/README.md`](README.md) | Master GAP-1 documentation index, provenance map, and status summary | Active | `v1.5` / `2026-11-28` | **Authoritative** *(Index)* | *(computed on save; self-referenced)* |
+| [`docs/research/DA-FIDAF/GAP-1/README.md`](README.md) | Master GAP-1 documentation index, provenance map, and status summary | Active | `v1.6` / `2026-11-28` | **Authoritative** *(Index)* | *(computed on save; self-referenced)* |
 | [`docs/research/DA-FIDAF/GAP-1/EXP_GAP_1_Protocol_v5_0.md`](EXP_GAP_1_Protocol_v5_0.md) | Complete locked `EXP-GAP-1` protocol (`D1`–`D6`, `RD-1`–`RD-5`, `VER-1`/`VER-2` summary, claim boundaries; byte-identical canonical repo copy of verified `v5.0`) | Locked (`v5.0`) | `v5.0` / `2026-11-27` | **Authoritative** *(Protocol)* | `0ee5dbd15e2116ab0294bcd7d5f8a715837a97aa99cd761e024645f6e7899ad2` |
 | [`docs/research/DA-FIDAF/GAP-1/GAP_1_REPOSITORY_AND_ARTIFACT_AUDIT_REPORT.md`](GAP_1_REPOSITORY_AND_ARTIFACT_AUDIT_REPORT.md) | Phase A audit of Git state, `docs/` tree, frozen ledger hashes, source file hashes, and discrepancies (`AUD-01`–`AUD-06`) | Completed | `v1.0` / `2026-11-28` | **Supporting** *(Audit Report)* | `e3ad71cebbd150cc58598668e1ef564decf15b4a72455e06e006e920cb04397a` |
 | [`docs/research/DA-FIDAF/GAP-1/GAP_1_PROTOCOL_AND_DECISION_AUDIT_REPORT.md`](GAP_1_PROTOCOL_AND_DECISION_AUDIT_REPORT.md) | Phase B line-by-line audit of `v5.0` operational rules, cross-ledger consistency, observations (`OBS-B1`–`OBS-B5`), and locked `D1`–`D6` / `RD-1`–`RD-5` decision log | Completed (`PASS`) | `v1.0` / `2026-11-28` | **Authoritative** *(Decision Log & Protocol Audit)* | `084a4ec01ba8fe3e6439da83334107f348c521e38e74b1bb3dc54770f6fc76fd` |
@@ -22,6 +22,7 @@
 | [`docs/research/DA-FIDAF/GAP-1/GAP_1_GATE_2_READINESS_REPORT.md`](GAP_1_GATE_2_READINESS_REPORT.md) | Concise Gate 2 readiness check verifying `320`-run matrix, `20` Holm tests, `W1`/`W3` exact `StratifiedShuffleSplit` `ceil` counts, `pilot_slot` omission, and `trigger_rate` naming choice | Completed (Gate 2 Executed under Option B-Hybrid) | `v1.0` / `2026-11-28` | **Supporting** *(Gate 2 Readiness Report)* | `5d2e7e39763e061b7116eeb1400846b2566c18fc203cb43d5b52f7233cd980c2` |
 | [`docs/research/DA-FIDAF/GAP-1/GAP_1_FINAL_EXPERIMENT_REPORT.md`](GAP_1_FINAL_EXPERIMENT_REPORT.md) | Gate 2 confirmatory experiment report (`20` base FL models + `320` trajectories, `20` pre-registered Holm + exact Wilcoxon tests, `W1` vs. `W3` findings, verified split counts & hashes) | Completed *(Independently Audited: `PASS`)* | `v1.0` / `2026-11-28` | **Authoritative** *(Final Experiment Report)* | `5ecd61238596d5cf6c1967753a0d6f6aa9024a6a92b5f56b1feea0c2a6c0946f` |
 | [`docs/research/DA-FIDAF/GAP-1/GAP_1_POST_CONFIRMATORY_AUDIT_REPORT.md`](GAP_1_POST_CONFIRMATORY_AUDIT_REPORT.md) | Independent read-only post-confirmatory audit verifying all `320` raw runs, `20` base-model linkages, `328/328` `.sha256` sidecars, `66/66` paired/Wilcoxon/Holm stats, split counts, report fidelity, and Gate 1/ledger/Git isolation | Completed (`AUDIT PASSED`) | `v1.0` / `2026-11-28` | **Authoritative** *(Post-Confirmatory Audit Report)* | `625b0489658760f9c7474930513bb48d62e267ca20c6781ab4d312a66c25b7b9` |
+| [`docs/research/DA-FIDAF/GAP-1/GAP_1_CROSS_STAGE_EVIDENCE_LEDGER_ADDENDUM_v1_1.md`](GAP_1_CROSS_STAGE_EVIDENCE_LEDGER_ADDENDUM_v1_1.md) | Append-only post-GAP-1 cross-stage evidence & claim ledger addendum (`Domain D7`, `U-B4-01`–`U-B4-07`, `2,325` cumulative disjoint runs, explicit confirmatory/exploratory/`NS` separation and `C1+C2+C3`/`GAP-2`/`GAP-3` boundaries) preserving both frozen ledgers byte-identical | Completed *(Reviewed & Verified)* | `v1.1` / `2026-11-28` | **Authoritative** *(Append-Only Ledger Addendum)* | `8de56f836a24309cec7365c15a5eff087c097921dc0650b6afac56a91dc60fa0` |
 
 ---
 
@@ -38,8 +39,7 @@
 
 ## 3. Blocked Next Actions (Pending Explicit Separate User Authorization)
 
-- **Cross-Stage Evidence & Claim Ledger Integration:** Creating a new post-GAP-1 cross-stage ledger addendum/version (while keeping the two frozen ledgers above untouched) to record the independently audited `EXP-GAP-1` (`E2` + `C3`) evidence (`8 CONFIRMATORY_HOLM`, `4 EXPLORATORY_RAW_ONLY`, `8 NS`, strict `W1`/`W3` separation).
-- **Next Research Gaps (`EXP-GAP-2` / `EXP-GAP-3`):** Protocol authoring and execution for `C1` attribution fidelity or `C2` 4-tier response latency/telemetry.
+- **Next Research Gaps (`EXP-GAP-2` / `EXP-GAP-3`):** Protocol authoring and execution for `C1` attribution fidelity (`v3` `Hold`/`Downweight` logging & `n = 10` pre-registered audit) or `C2` 4-tier graduated response latency/overhead and closed-loop `E6` ablation remain blocked pending explicit separate authorization.
 
 ---
 

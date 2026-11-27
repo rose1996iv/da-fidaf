@@ -58,3 +58,31 @@ def test_trailing_whitespace_and_eof_detected_without_modifying_file(tmp_path: P
     assert any("missing trailing newline" in v for v in violations)
     # Strictly read-only: file must remain unmodified
     assert sample.read_text(encoding="utf-8") == original
+
+
+def test_markdown_two_space_hard_line_break_is_allowed(tmp_path: Path) -> None:
+    doc = tmp_path / "report.md"
+    doc.write_text("# Title\n\n**Status:** PASS  \n**Date:** 2026-11-28\n", encoding="utf-8")
+
+    violations = check_file_policy(doc, repo_root=tmp_path)
+    assert violations == []
+
+
+def test_markdown_invalid_trailing_whitespace_and_non_md_two_spaces_blocked(
+    tmp_path: Path,
+) -> None:
+    invalid_md_cases = {
+        "single_space.md": "line with one space \n",
+        "three_spaces.md": "line with three spaces   \n",
+        "trailing_tab.md": "line with tab\t\n",
+        "tab_then_two_spaces.md": "line with tab and spaces\t  \n",
+        "blank_two_spaces.md": "  \n",
+        "two_spaces_in_python.py": "x = 1  \n",
+    }
+    for filename, content in invalid_md_cases.items():
+        path = tmp_path / filename
+        path.write_text(content, encoding="utf-8")
+        violations = check_file_policy(path, repo_root=tmp_path)
+        assert any("trailing whitespace" in v for v in violations), (
+            f"Expected trailing whitespace violation for {filename}"
+        )

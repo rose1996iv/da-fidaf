@@ -138,6 +138,14 @@ def check_file_policy(
             else:
                 for lineno, line in enumerate(text.splitlines(), start=1):
                     if line.endswith((" ", "\t")):
+                        if (
+                            suffix == ".md"
+                            and line.endswith("  ")
+                            and line[:-2]
+                            and not line[:-2].endswith((" ", "\t"))
+                            and line.strip() != ""
+                        ):
+                            continue
                         violations.append(
                             f"{rel_posix}:{lineno}: trailing whitespace detected"
                         )
